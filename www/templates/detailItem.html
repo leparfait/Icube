@@ -1,0 +1,40 @@
+<ion-view style="" class=" " id="page19" title="Description du produit">
+        <ion-content class="has-header" padding="true" *ngIf="item" >
+                       <div>
+                         <img  ng-src="{{'img/fk/'+ item.image +'.jpg'}}" height="200px" width="150px" />
+                         <h2>{{item.name}}</h2>
+                         <p><strong>{{item.price}} fcfa</strong></p>
+                         <p> {{item.description}} </p>
+                       </div> 
+                   
+                       <ion-row>
+                         <ion-col>
+                           <button ng-model="btnComment" ion-button icon-left clear small (click)="addComment(item)">
+                             <ion-icon name="ios-create" color="red"></ion-icon>
+                             <div style="color:rgb(201, 28, 28); font-weight: bold;"><strong>Laisser un commentaire</strong></div>
+                           </button>
+                         </ion-col>
+                         <ion-col *ngIf="comments">
+                           <button ion-button icon-left clear small (click)="viewComment(item.$id)">
+                             <ion-icon name="ios-chatbubbles" color="red"></ion-icon>
+                             <div style="color:rgb(201, 28, 28); font-weight: bold;"><strong>Voir les commentaires</strong></div>
+                           </button>
+                         </ion-col>
+                       </ion-row><br>
+                       <ion-row>
+                           <!-- affichage des commentaires div text nom floater a droite en bas-->
+                           <div id="chatMessages" *ngIf="comments && btnComment">                                
+                                 <div class="messsage" *ngFor ="let comment of comments" [class]="message.specialMessage ? 'info special' : 'info'" >
+                                 <div [class]="bubble messageRight ">
+                                 <div class="username"> {{comment.user_name}}</div><br/>
+                                 <div class="message"> {{comment.commentaire}}</div>
+                                 </div><br><br><br>
+                                 </div>
+                            </div>
+                       </ion-row>
+                       <button ng-click="addToCart(item)" class=" button button-positive button-block icon-left ion-social-facebook">
+                          <i style="font-size: 25px;right: 0px;" class="icon ion-ios-cart"></i>Ajouter au panier
+                       </button>                    
+        </ion-content>
+    </ion-view>
+    

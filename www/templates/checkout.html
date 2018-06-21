@@ -1,0 +1,55 @@
+<ion-view title="Commander"  id="page16" >
+  <ion-content padding="false" class="has-header">
+
+    <form name="checkoutForm" class="list " ng-submit="pay(address_choice,$parent.pay_choice)" >
+
+      <!--Address Header-->
+      <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
+        <a class="icon icon-right ion-ios-location" style="margin-right: 10px;" ></a>
+        Addresse
+        <i  class="icon icon-right ion-android-add-circle" style="font-size: larger ;margin-left: 10px;"></i>
+      </label>
+
+
+      <!-- Address -->
+      <ion-list ng-repeat="item in addresses" >
+          <ion-radio name="addr_group" ng-value="item.$id" ng-model="$parent.address_choice">
+            <a class="icon icon-right ion-ios-location"></a>
+            {{item.nickname}} <br/>
+            {{item.address}} <br/>
+            P.O BOX : {{item.pin}}<br/>
+            Phone : {{item.phone}}
+          </ion-radio>
+      </ion-list>
+
+
+
+
+      <!--Payment Header-->
+      <label ng-click="addManipulation()" class="item item-input  item ic-selected" >
+        <a class="icon icon-right ion-cash" style="margin-right: 10px;" ></a>
+        Mode de  Paiement
+      </label>
+
+
+      <!-- Payment Options -->
+      <ion-list  ng-repeat="item in payments">
+          <ion-grid>
+              <ion-row>
+                  <ion-col col-6 ><ion-radio name="pay_group" ng-value="item.id" ng-model="$parent.pay_choice" ng-click="checkboxChange($parent.pay_choice)"> <img  src="img/{{item.img}}" width="50px" height="50px"> {{item.name}}  </ion-radio></ion-col>
+              </ion-row>
+            </ion-grid>
+
+      </ion-list>
+
+
+      <button type="submit" class=" button button-calm  button-block icon-right ion-android-arrow-forward ">
+        PAYER
+      </button>
+
+    </form>
+
+  </ion-content>
+
+
+</ion-view>
